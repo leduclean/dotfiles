@@ -1,0 +1,19 @@
+#LogLevel DEBUG3
+Host imhotep
+  HostName imhotep
+
+Host kalray
+  ProxyCommand ssh -i ~/.ssh/id_lleduc_remote kalray@ssh.kalray.eu
+  DynamicForward *:8090
+  # Redirect remote ports to local ports
+  LocalForward 4444 localhost:22
+  LocalForward 3389 winapp.kalray.eu:3389
+  LocalForward 9999 imhotep-dev:22
+  LocalForward 4200 imhotep-dev:4200
+
+  Host imhotep-dev
+    HostName localhost
+    User junited
+    Port 9999
+    IdentityFile ~/.ssh/junited_devkey
+    LocalForward 4300 localhost:4300

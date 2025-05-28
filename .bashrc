@@ -92,6 +92,25 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+## get rid of command not found ##
+alias cd..='cd ..'
+
+## a quick way to get out of current directory ##
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+
+
+# reboot / halt / poweroff
+alias reboot='sudo /sbin/reboot'
+alias poweroff='sudo /sbin/poweroff'
+alias halt='sudo /sbin/halt'
+alias shutdown='sudo /sbin/shutdown'
+alias sob='. ~/.bashrc'
+alias c='clear'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -116,7 +135,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # Oh My Posh init
 eval "$(oh-my-posh init bash --config ~/.config/oh-my-posh/themes/catppuccin_mocha.omp.json)"
 
@@ -125,3 +143,6 @@ if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/bash/git-completion.bash" ]; then
     source "${XDG_CONFIG_HOME:-$HOME/.config}/bash/git-completion.bash"
 fi
 
+export PATH="$HOME/.fzf/bin:$PATH"
+eval "$(fzf --bash)"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
