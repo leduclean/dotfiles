@@ -146,3 +146,6 @@ fi
 export PATH="$HOME/.fzf/bin:$PATH"
 eval "$(fzf --bash)"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(zoxide init bash)"
