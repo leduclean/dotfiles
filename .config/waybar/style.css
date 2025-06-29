@@ -59,6 +59,7 @@ button:hover {
 #battery,
 #cpu,
 #memory,
+#custom-screen-layout,
 #disk,
 #temperature,
 #backlight,
@@ -69,6 +70,7 @@ button:hover {
 #scratchpad {
   margin: 2px 4px;
   padding: 0 4px;
+  /* border-radius: 20; */
 }
 
 #clock {
@@ -89,6 +91,11 @@ button:hover {
 #network {
     color: @yellow;
     border-bottom: 2px solid @yellow;
+}
+
+#custom-screen-layout{
+    color: @sapphire;
+    border-bottom: 2px solid @sapphire;
 }
 
 #idle_inhibitor {

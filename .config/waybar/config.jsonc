@@ -2,7 +2,14 @@
   "position": "top",
   "modules-left": ["sway/workspaces"],
   "modules-center": ["sway/window"],
-  "modules-right": ["network", "pulseaudio", "battery", "clock", "cpu"],
+  "modules-right": ["custom/screen-layout","network", "pulseaudio", "battery", "clock", "cpu"],
+  "custom/screen-layout": {
+    "exec": "/home/lleduc/.config/waybar/scripts/screen-layout.sh",
+    "interval": 5,
+    "markup": "pango",
+    "format": "{}",
+    "on-click": "/home/lleduc/.config/wofi/scripts/wofi-layout.sh"
+  },
   "clock": {
     "format": "<span foreground='#f5c2e7'>  </span>{:%a %d %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
@@ -28,7 +35,8 @@
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
     "tooltip-format-wifi": "Signal: {signalStrength}%",
-    "tooltip-format-ethernet": "{ifname} - {ipaddr}"
+    "tooltip-format-ethernet": "{ifname} - {ipaddr}",
+    "on-click": "/home/lleduc/.config/wofi/scripts/wofi-wifi.sh"
   },
   "pulseaudio": {
     "format": "{icon}  {volume}%",
