@@ -59,15 +59,17 @@ font pango:Fira Code  Nerd Font Mono Bold 14
 # xss-lock grabs a logind suspend inhibit lock and will use swaylock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- swaylock --nofork
-bindsym $mod+Escape exec swaylock \
-  --color 1e1e2e \
-  --inside-color 181825 \
-  --ring-color cba6f7 \
-  --line-color 11111b \
-  --separator-color 6c7086 \
-  --text-color cdd6f4 \
-  --key-hl-color b4befe \
-  --bs-hl-color f38ba8
+bindsym $mod+Escape exec sh -c 'swaylock \
+    --color "#1e1e2e" \
+    --inside-color "#181825" \
+    --ring-color "#cba6f7" \
+    --line-color "#11111b" \
+    --separator-color "#6c7086" \
+    --text-color "#cdd6f4" \
+    --key-hl-color "#b4befe" \
+    --bs-hl-color "#f38ba8" & \
+  sleep 0.5; systemctl suspend'
+
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -78,9 +80,13 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --notartup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Brightness for screen backboard and keyboard backlight
+# TIPS: install brightness-udev to allow non sudo commands 
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set -- -5%
-
+bindsym Ctrl+XF86MonBrightnessUp   exec brightnessctl --device='platform::kbd_backlight' set +1
+bindsym Ctrl+XF86MonBrightnessDown exec brightnessctl --device='platform::kbd_backlight' set -- -1
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
