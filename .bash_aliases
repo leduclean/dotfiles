@@ -29,3 +29,13 @@ alias shutdown='sudo /sbin/shutdown'
 alias sob='. ~/.bashrc'
 alias c='clear'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# git
+alias gt="git"
+alias gti="git"
+alias ga="git add ."
+alias gs="git status -s"
+alias glog="git log --oneline --graph --all"
+
+# app aliases
+alias bat="batcat"
