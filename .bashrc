@@ -61,16 +61,55 @@ if ! shopt -oq posix; then
     fi
 fi
 
-# Tools Path
-export PATH="/home/linuxbrew/.linuxbrew/opt/zoxide/bin:$PATH"
+# Brew init
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export PATH="$HOME/.local/bin:$PATH"
+
 
 ## Tools Init (fzf, zoxide, git-completion, oh-my-posh, cargo, brew)
+
+# Oh my posh
 eval "$(oh-my-posh init bash --config ~/.config/oh-my-posh/themes/catppuccin_mocha.omp.json)"
+
+# Git completion
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/bash/git-completion.bash" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/bash/git-completion.bash"
 . "$HOME/.cargo/env"
-eval "$(zoxide init bash)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export PATH="$HOME/.local/bin:$PATH"
+# Zoxide
+export PATH="/home/linuxbrew/.linuxbrew/opt/zoxide/bin:$PATH"
 eval "$(zoxide init bash)"
+
+# FZF
+eval "$(fzf --bash)"
+
+export FZF_DEFAULT_COMMAND="fdfind --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fdfind --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --border"
+# Tmux conf
+
+export FZF_TMUX_OPTS="-p90%,70% "
+# Setup fzf previews
+export FZF_CTRL_T_OPTS='
+  --preview="[ -d {} ] && tree -C {} | head -100 || batcat --style=numbers --color=always --line-range=:500 {}"
+'
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview='tree -C {}'"
+
+# Launch Vs code on a specific folder
+codefzf() {
+  local folder
+  folder=$(
+    fdfind --type l --type d --hidden --strip-cwd-prefix \
+       --exclude .git --exclude node_modules \
+    | fzf \
+      --preview="tree -C {} | head -100" \
+      --preview-window=right:60%
+  ) || return
+
+  if [[ -n $folder ]]; then
+    code "$folder" && cd "$folder"
+  fi
+}
