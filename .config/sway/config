@@ -82,7 +82,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --notartup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Brightness for screen backboard and keyboard backlight
-# TIPS: install brightness-udev to allow non sudo commands 
+# TIPS: install brightness-udev to allow non sudo commands
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set -- -5%
 bindsym Ctrl+XF86MonBrightnessUp   exec brightnessctl --device='platform::kbd_backlight' set +1
@@ -133,7 +133,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+space floating toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
