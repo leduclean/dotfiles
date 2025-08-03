@@ -18,6 +18,7 @@ input * {
 
 input type:touchpad {
     natural_scroll enabled
+    tap enabled
 }
 
 
@@ -25,20 +26,8 @@ input type:touchpad {
 
 set $mod Mod4
 
-#------------------------- Sreen settings -------------------------
-#By default we set the appartment settings
-
-output eDP-1 mode 3072x1920@60.000Hz position 0 1200 scale 1.6
-output DP-1 enable mode 1920x1200@60.000Hz position 0 0
-
-
-# Workspace Assignation
-workspace 1 output eDP-1
-workspace 2 output DP-1
 
 # Use the waybar
-# exec_always --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-# exec_always --no-startup-id systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec_always --no-startup-id pkill waybar
 exec_always --no-startup-id waybar
 
@@ -82,7 +71,6 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --notartup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Brightness for screen backboard and keyboard backlight
-# TIPS: install brightness-udev to allow non sudo commands
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set -- -5%
 bindsym Ctrl+XF86MonBrightnessUp   exec brightnessctl --device='platform::kbd_backlight' set +1
@@ -141,6 +129,15 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+#------------------------- Sreen settings-------------------------
+#By default we set the appartment settings
+output eDP-1 mode 3072x1920@60.000Hz position 0 1200 scale 1.6
+output DP-1 enable mode 1920x1200@60.000Hz position 0 0
+
+# Workspace Assignation
+workspace 1 output eDP-1
+workspace 2 output DP-1
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -153,6 +150,8 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -177,6 +176,13 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# Default workspaces for common programs
+assign [app_id="chrome-www.deezer.com__-Default"] $ws1
+assign [app_id="google-chrome"] $ws2
+
+for_window [app_id="pavucontrol"] floating enable
+# Floating workspace
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
