@@ -36,6 +36,6 @@ alias gti="git"
 alias ga="git add ."
 alias gs="git status -s"
 alias glog="git log --oneline --graph --all"
-
+alias gpfwl="git push --force-with-lease"
 # app aliases
 alias bat="batcat"
