@@ -25,3 +25,8 @@ style = "Regular"
 import = [
   "/home/lleduc/.config/alacritty/catppuccin-macchiato.toml"
 ]
+
+[[keyboard.bindings]]
+key = "Backspace"
+mods = "Control"
+chars = "\u0017"
