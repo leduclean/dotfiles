@@ -3,3 +3,5 @@
 	name = Le Duc Léandre
 [alias]
 	ri = "!f() { git rebase -i HEAD~$1; }; f"
+[credential]
+	helper = cache
