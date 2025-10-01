@@ -5,9 +5,8 @@ case $- in
     *i*) ;;
       *) return;;
 esac
-
 ##  Environment variables
-export EDITOR=vim
+export EDITOR=nvim
 export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
 export HISTFILESIZE=2000
@@ -62,8 +61,8 @@ if ! shopt -oq posix; then
 fi
 
 # Brew init
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-export PATH="$HOME/.local/bin:$PATH"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# export PATH="$HOME/.local/bin:$PATH"
 
 
 ## Tools Init (fzf, zoxide, git-completion, oh-my-posh, cargo, brew)
@@ -82,9 +81,9 @@ eval "$(zoxide init bash)"
 # FZF
 eval "$(fzf --bash)"
 
-export FZF_DEFAULT_COMMAND="fdfind --hidden --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fdfind --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 
 export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --border"
 # Tmux conf
@@ -92,7 +91,7 @@ export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --border"
 export FZF_TMUX_OPTS="-p90%,70% "
 # Setup fzf previews
 export FZF_CTRL_T_OPTS='
-  --preview="[ -d {} ] && tree -C {} | head -100 || batcat --style=numbers --color=always --line-range=:500 {}"
+  --preview="[ -d {} ] && tree -C {} | head -100 || bat --style=numbers --color=always --line-range=:500 {}"
 '
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
@@ -102,7 +101,7 @@ export FZF_ALT_C_OPTS="
 codefzf() {
   local folder
   folder=$(
-    fdfind --type l --type d --hidden --strip-cwd-prefix \
+    fd --type l --type d --hidden --strip-cwd-prefix \
        --exclude .git --exclude node_modules \
     | fzf \
       --preview="tree -C {} | head -100" \
@@ -113,3 +112,5 @@ codefzf() {
     code "$folder" && cd "$folder"
   fi
 }
+
+PS1=$'\x01'"$PS1"
