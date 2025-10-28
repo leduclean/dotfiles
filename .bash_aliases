@@ -34,6 +34,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias gt="git"
 alias gti="git"
 alias ga="git add ."
+alias gaa="git commit -a --amend"
 alias gs="git status -s"
 alias glog="git log --oneline --graph --all"
 alias gpfwl="git push --force-with-lease"
