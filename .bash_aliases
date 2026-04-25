@@ -40,3 +40,5 @@ alias glog="git log --oneline --graph --all"
 alias gpfwl="git push --force-with-lease"
 # app aliases
 alias bat="batcat"
+alias swww=gswww
+alias swww-daemon=gswww
