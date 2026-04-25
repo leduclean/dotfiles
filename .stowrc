@@ -1,3 +1,2 @@
 --ignore=README.md
---ignore=setup.sh
 --ignore=.stowrc
