@@ -3,5 +3,9 @@
 	name = Le Duc Léandre
 [alias]
 	ri = "!f() { git rebase -i HEAD~$1; }; f"
-[credential]
-	helper = cache
+[safe]
+	directory = /home/lleduc/code/imag/mnt-riscv
+[push]
+	autoSetupRemote = true
+[commit]
+	gpgSign = false
