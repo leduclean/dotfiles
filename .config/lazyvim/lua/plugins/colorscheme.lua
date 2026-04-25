@@ -1,5 +1,15 @@
 return {
-  -- add gruvbox
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+  },
+  {
+    "navarasu/onedark.nvim",
+    name = "onedark",
+    opts = {
+      style = "dark",
+    },
+  },
   {
     "catppuccin/nvim",
     lazy = true,
@@ -52,11 +62,10 @@ return {
       },
     },
   },
-  -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-frappe",
+      colorscheme = "onedark",
     },
   },
 }

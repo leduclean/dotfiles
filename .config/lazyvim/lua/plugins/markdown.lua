@@ -1,28 +1,9 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
+  dependencies = { "nvim-treesitter/nvim-treesitter" },
   opts = {
-    code = {
-      sign = false,
-      width = "block",
-      right_pad = 1,
-    },
-    heading = {
-      sign = false,
-      icons = {},
-    },
-    checkbox = {
-      enabled = false,
-    },
-    preview_engine = "nvim", -- rendu direct dans Neovim
-    live_preview = true, -- mise à jour automatique
+    file_types = { "markdown", "anki" },
+    latex = { enabled = true },
+    completions = { lsp = { enabled = true } },
   },
-  ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
-  config = function(_, opts)
-    require("render-markdown").setup(opts)
-    Snacks.toggle({
-      name = "Render Markdown",
-      get = require("render-markdown").get,
-      set = require("render-markdown").set,
-    }):map("<leader>um")
-  end,
 }

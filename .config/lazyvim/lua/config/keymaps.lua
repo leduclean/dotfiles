@@ -9,3 +9,5 @@ vim.keymap.set("n", "H", "^", { desc = "Go to first non-blank character" })
 vim.keymap.set("n", "L", "$", { desc = "Go to end of line" })
 
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor" })
+vim.keymap.del("n", "<leader>ft")
+vim.keymap.del("n", "<leader>fT")

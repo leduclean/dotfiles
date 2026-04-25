@@ -1,3 +1,16 @@
-vim.keymap.set("n", "<leader>d", function()
-  require("neogen").generate()
-end, { noremap = true, silent = true, desc = "Generate docblock with Neogen" })
+return {
+  "danymat/neogen",
+  keys = {
+    {
+      "<leader>d",
+      function()
+        require("neogen").generate()
+      end,
+      desc = "Generate docblock",
+    },
+    {
+      "<leader>cn",
+      nil,
+    },
+  },
+}
